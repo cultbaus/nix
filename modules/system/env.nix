@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 {
+  programs.bash.promptInit = builtins.readFile ./bashrc.sh;
   environment =
     {
       sessionVariables =
         rec {
-          GOPATH = "\${HOME}/.go";
           XCURSOR_SIZE = "64";
           EDITOR = "nvim";
           VISUAL = "nvim";
