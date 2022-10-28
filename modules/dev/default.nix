@@ -8,7 +8,7 @@
     ./go.nix
     ./lua.nix
     ./nix.nix
-    ./node.nix
+    ./node
     ./rust.nix
   ];
 }

@@ -16,9 +16,9 @@ check: ## run `nix flake check` on your configuration
 gc: ## collect garbage
 	@nix-collect-garbage
 
-.PHONY: home
+.PHONY: home generate
 home: ## rebuild home-manager specific configurations
-	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
+	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" --impure && \
 		./result/activate
 
 .PHONY: rebuild
@@ -30,8 +30,13 @@ update: ## update system
 	@nix flake update $(FLAKE_ROOT)
 
 .PHONY: upgrade
-upgrade: update rebuild home ## upgrade
+upgrade: update rebuild generate home ## upgrade
 
 .PHONY: optimise
 optimise: ## optimise the nix store
 	@nix-store --optimise
+
+.PHONY: generate
+generate: ## generate node-packages.nix
+	@cd modules/dev/node/packages && \
+		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-14 -i ./node-packages.json -o node-packages.nix"
