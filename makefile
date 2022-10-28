@@ -10,7 +10,7 @@ help: ## prints this help message
 
 .PHONY: check
 check: ## run `nix flake check` on your configuration
-	nix flake check "$(FLAKE_ROOT)#"
+	@nix flake check "$(FLAKE_ROOT)#"
 
 .PHONY: gc
 gc: ## collect garbage
@@ -18,16 +18,16 @@ gc: ## collect garbage
 
 .PHONY: home
 home: ## rebuild home-manager specific configurations
-	nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
+	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
 		./result/activate
 
 .PHONY: rebuild
 rebuild: ## rebuild system-wide configurations
-	sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#"
+	@sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#"
 
 .PHONY: update
 update: ## update system
-	nix flake update $(FLAKE_ROOT)
+	@nix flake update $(FLAKE_ROOT)
 
 .PHONY: upgrade
 upgrade: update rebuild home ## upgrade
