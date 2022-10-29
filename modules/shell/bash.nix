@@ -17,7 +17,6 @@
       gslog = "git shortlog";
       glog = "git log --pretty\=format:'%n%ar %n%Cred%h %Cblue%an <%ae> %n%Cgreen%s%n' --name-only";
       glogme = "glog --author\='\(Nicholas\)\|\(gebhartn\)'";
-      vim = "nvim";
       ncmpcpp = "ncmpcpp - b ~/.config/ncmpcpp/bindings";
       pro = "cd ~/projects/";
       pkg = "cd ~/packages";
