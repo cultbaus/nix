@@ -13,9 +13,5 @@ in
       enable = true;
       goPath = ".go";
     };
-
-    home.packages = with pkgs; [
-      gotools
-    ];
   };
 }

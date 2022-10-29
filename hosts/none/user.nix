@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
-    ../../modules/editors/neovim.nix
     ../../modules/desktop
     ../../modules/dev
     ../../modules/programs
@@ -14,15 +13,11 @@
       picom.enable = true;
     };
     dev = {
-      fmt.enable = true;
       go.enable = true;
       nix.enable = true;
       node.enable = true;
       rust.enable = true;
       lua.enable = true;
-    };
-    editors = {
-      neovim.enable = true;
     };
   };
 }

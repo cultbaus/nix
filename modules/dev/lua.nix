@@ -12,9 +12,6 @@ in
     home.packages = with pkgs; [
       luajit
       lua52Packages.luarocks
-
-      # Need to install this manually because of linker patch
-      sumneko-lua-language-server
     ];
   };
 }
