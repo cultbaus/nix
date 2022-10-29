@@ -61,9 +61,21 @@ in
         };
 
         startup = [
-          { command = "picom -b -G"; always = true; notification = false; }
-          { command = "xset r rate 200 40"; always = true; notification = false; }
-          { command = "~/.fehbg"; always = true; notification = false; }
+          {
+            command = "picom -b -G";
+            always = true;
+            notification = false;
+          }
+          {
+            command = "xset r rate 200 40";
+            always = true;
+            notification = false;
+          }
+          {
+            command = "~/.fehbg";
+            always = true;
+            notification = false;
+          }
         ];
       };
 
