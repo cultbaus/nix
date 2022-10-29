@@ -3,6 +3,7 @@
 with lib;
 let
   cfg = config.modules.dev.node;
+  extraNodePackages = import ./packages/default.nix { };
 in
 {
   options.modules.dev.node = {
@@ -13,6 +14,10 @@ in
     home.packages = with pkgs; [
       nodejs
       yarn
+      extraNodePackages."typescript"
+      extraNodePackages."typescript-language-server"
+      extraNodePackages."@fsouza/prettierd"
+      extraNodePackages."eslint_d"
     ];
   };
 }

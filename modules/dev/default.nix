@@ -1,7 +1,8 @@
-{ config, pkgs, libs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  imports = [
+  imports = with lib; [
+    ./bash.nix
     ./go.nix
     ./lua.nix
     ./nix.nix

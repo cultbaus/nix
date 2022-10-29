@@ -12,6 +12,8 @@ in
     home.packages = with pkgs; [
       luajit
       lua52Packages.luarocks
+      sumneko-lua-language-server
+      stylua
     ];
   };
 }

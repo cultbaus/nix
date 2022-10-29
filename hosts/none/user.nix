@@ -13,11 +13,12 @@
       picom.enable = true;
     };
     dev = {
+      bash.enable = true;
       go.enable = true;
+      lua.enable = true;
       nix.enable = true;
       node.enable = true;
       rust.enable = true;
-      lua.enable = true;
     };
   };
 }

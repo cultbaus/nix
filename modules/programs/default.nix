@@ -3,7 +3,7 @@
 {
   imports = [
     ./alacritty.nix
-    ./neovim.nix
+    ./neovim
   ];
 
   home.packages = with pkgs; [
