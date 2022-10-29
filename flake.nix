@@ -1,5 +1,6 @@
 {
   description = "NixOS";
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
@@ -22,31 +23,6 @@
         config = { allowUnfree = true; };
       };
 
-      lib = nixpkgs.lib.extend
-        (final: prev:
-          let
-            inherit (lib) mkOption types;
-          in
-          {
-
-            mkOpt = type: default:
-              mkOption { inherit type default; };
-
-            mkOpt' = type: default: description:
-              mkOption { inherit type default description; };
-
-            mkBoolOpt = default: mkOption {
-              inherit default;
-              type = types.bool;
-              example = true;
-            };
-          });
-
-
-      extraSpecialArgs = {
-        inherit inputs self;
-      };
-
       overlays = [
         neovim-nightly.overlay
       ];
@@ -54,7 +30,7 @@
     {
       homeManagerConfigurations = {
         nil = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs extraSpecialArgs;
+          inherit pkgs;
           modules = [
             ./hosts/none/user.nix
             {
