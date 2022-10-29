@@ -2,7 +2,10 @@
 
 with pkgs;
 let
-  init = builtins.readFile ./plugins/init.lua;
+  hl = builtins.readFile ./extras/highlights.lua;
+  kb = builtins.readFile ./extras/keybindings.lua;
+  opt = builtins.readFile ./extras/options.lua;
+  sl = builtins.readFile ./extras/statusline.lua;
 in
 {
   programs.neovim = {
@@ -11,7 +14,10 @@ in
     vimAlias = true;
     extraConfig = ''
       lua << EOF
-      ${init}
+      ${hl}
+      ${kb}
+      ${opt}
+      ${sl}
       EOF
     '';
     plugins = with vimPlugins; [
@@ -29,11 +35,6 @@ in
         plugin = null-ls-nvim;
         type = "lua";
         config = builtins.readFile (./plugins/null-ls.lua);
-      }
-      {
-        plugin = which-key-nvim;
-        type = "lua";
-        config = builtins.readFile (./plugins/which-key.lua);
       }
       {
         plugin = nvim-lspconfig;
