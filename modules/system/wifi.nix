@@ -1,7 +1,8 @@
-{ configs, pkgs, libs, ... }:
+{ config, pkgs, lib, ... }:
+with lib;
 let
-  ssid = "${config.home.homeDirectory}/.secrets/wifi-ssid";
-  psk = "${config.home.homeDirectory}/.secrets/wifi-psk";
+  ssid = builtins.readFile ../../.secrets/wifi-ssid;
+  psk = builtins.readFile ../../.secrets/wifi-psk;
 in
 {
   networking = {
@@ -9,7 +10,7 @@ in
     wireless = {
       enable = true;
       networks = {
-        "\${ssid}" = {
+        ${ssid} = {
           psk = psk;
         };
       };

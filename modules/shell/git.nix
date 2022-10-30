@@ -1,6 +1,6 @@
 { config, pkgs, libs, ... }:
 let
-  key = "${config.home.homeDirectory}/.secrets/secret-key-id";
+  key = builtins.readFile "${config.home.homeDirectory}/nix/.secrets/signing-key";
 in
 {
   home.packages = with pkgs; [
