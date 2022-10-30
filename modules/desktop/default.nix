@@ -2,7 +2,7 @@
 {
   imports = [
     ./picom.nix
-    ./i3.nix
+    ./wm
   ];
 
   home.pointerCursor = {

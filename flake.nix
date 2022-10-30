@@ -6,6 +6,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
   };
 
   outputs =
@@ -13,6 +14,7 @@
     , nixpkgs
     , home-manager
     , neovim-nightly
+    , nixpkgs-f2k
     , ...
     }@inputs:
     let
@@ -24,6 +26,7 @@
       };
 
       overlays = [
+        nixpkgs-f2k.overlays.window-managers
         neovim-nightly.overlay
       ];
     in

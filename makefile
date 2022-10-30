@@ -1,5 +1,5 @@
 HOME:=${HOME}
-CONFIG_DIR:=config
+CONFIG_DIR:=nix
 FLAKE_ROOT:=$(HOME)/$(CONFIG_DIR)
 HMC:=homeManagerConfigurations
 USER:=nil
@@ -36,10 +36,17 @@ update: ## runs `nix flake update`
 upgrade: update rebuild generate home ## updates and rebuilds system-wide & home-manager configurations
 
 .PHONY: optimise
-optimise: ## optimise the nix store
+optimise: clean ## clean & optimise the nix store
 	@nix-store --optimise
 
 .PHONY: generate
 generate: ## generate node-packages.nix (impure)
-	@cd modules/programs/packages && \
+	@cd modules/dev/packages && \
 		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-14 -i ./node-packages.json -o node-packages.nix"
+
+.PHONY: clean
+clean: ## cleans & deletes old generations, collects garbage
+	@nix-env --delete-generations old && \
+		nix-store --gc && \
+		nix-collect-garbage -d && \
+

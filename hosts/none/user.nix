@@ -9,7 +9,10 @@
 
   config.modules = {
     desktop = {
-      i3.enable = true;
+      wm = {
+        i3.enable = false;
+        awesome.enable = true;
+      };
       picom.enable = true;
     };
     dev = {

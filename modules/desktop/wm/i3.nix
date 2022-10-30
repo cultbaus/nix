@@ -2,10 +2,10 @@
 with lib;
 let
   mod = "Mod4";
-  cfg = config.modules.desktop.i3;
+  cfg = config.modules.desktop.wm.i3;
 in
 {
-  options.modules.desktop.i3 = {
+  options.modules.desktop.wm.i3 = {
     enable = mkEnableOption "i3";
   };
   config = mkIf cfg.enable {

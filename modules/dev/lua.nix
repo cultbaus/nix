@@ -10,7 +10,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      luajit
+      lua
       lua52Packages.luarocks
       sumneko-lua-language-server
       stylua
