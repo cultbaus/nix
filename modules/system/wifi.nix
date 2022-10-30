@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  secrets = builtins.readFile ../../.secrets/sk.nix;
+  secrets = import ../../.secrets/sk.nix { };
   # ssid = builtins.readFile ../../.secrets/wifi-ssid;
   # psk = builtins.readFile ../../.secrets/wifi-psk;
 in

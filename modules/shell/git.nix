@@ -1,7 +1,7 @@
 { config, pkgs, libs, ... }:
 let
   # key = builtins.readFile ${config.home.homeDirectory}/nix/.secrets/signing-key;
-  secrets = builtins.readFile ../../.secrets/sk.nix;
+  secrets = import ../../.secrets/sk.nix { };
 in
 {
   home.packages = with pkgs; [
