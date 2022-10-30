@@ -21,7 +21,7 @@ gc: ## collect garbage
 .PHONY: home
 home: ## rebuild home-manager specific configurations (impure)
 	@git-crypt unlock && \
-		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" --impure && \
+		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
 		./result/activate && \
 		rm -rf result && \
 		git-crypt lock
