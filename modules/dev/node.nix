@@ -3,10 +3,10 @@
 with lib;
 let
   cfg = config.modules.dev.node;
-  extraNodePackages = import ./packages/default.nix { };
+  extraNodePackages = import ./packages/default.nix { inherit pkgs; };
 in
 {
-  options.modules.dev.node = {
+  options. modules. dev. node = {
     enable = mkEnableOption "node";
   };
 

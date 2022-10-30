@@ -1,6 +1,7 @@
 { config, pkgs, libs, ... }:
 let
-  key = builtins.readFile "${config.home.homeDirectory}/nix/.secrets/signing-key";
+  # key = builtins.readFile ${config.home.homeDirectory}/nix/.secrets/signing-key;
+  secrets = builtins.readFile ../../.secrets/sk.nix;
 in
 {
   home.packages = with pkgs; [
@@ -12,7 +13,7 @@ in
     userName = "cultbaus";
     userEmail = "cultbaus@gmail.com";
     signing = {
-      key = key;
+      key = secrets.git.key;
       signByDefault = true;
     };
   };

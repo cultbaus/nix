@@ -26,6 +26,12 @@ home: ## rebuild home-manager specific configurations (impure)
 		rm -rf result && \
 		git-crypt lock
 
+.PHONY: nolock
+nolock: ## rebuild home-manager specific configurations (impure)
+	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
+		./result/activate && \
+		rm -rf result
+
 .PHONY: rebuild
 rebuild: ## rebuild system-wide configurations
 	@git-crypt unlock && \

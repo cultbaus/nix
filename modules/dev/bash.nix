@@ -3,7 +3,7 @@
 with lib;
 let
   cfg = config.modules.dev.bash;
-  extraNodePackages = import ./packages/default.nix { };
+  extraNodePackages = import ./packages/default.nix { inherit pkgs; };
 in
 {
   options.modules.dev.bash = {

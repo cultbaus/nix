@@ -42,22 +42,24 @@ function M.close_window(client)
     client:kill()
 end
 
--- jump to tag n [0 - 9]
+-- jump to tag n [1 - 10]
 function M.view_tags(awful)
     return function(index)
+        local i = index == 0 and 10 or index
         local screen = awful.screen.focused()
-        local tag = screen.tags[index]
+        local tag = screen.tags[i]
         if tag then
             tag:view_only()
         end
     end
 end
 
--- move window to tag n [0 - 9]
+-- move window to tag n [1 - 10]
 function M.move_window()
     return function(index)
         if client.focus then
-            local tag = client.focus.screen.tags[index]
+            local i = index == 0 and 10 or index -- i love lua
+            local tag = client.focus.screen.tags[i]
             if tag then
                 client.focus:move_to_tag(tag)
             end
