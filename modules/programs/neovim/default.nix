@@ -6,6 +6,7 @@ let
   kb = builtins.readFile ./extras/keybindings.lua;
   opt = builtins.readFile ./extras/options.lua;
   sl = builtins.readFile ./extras/statusline.lua;
+  cmd = builtins.readFile ./extras/commands.lua;
 in
 {
   programs.neovim = {
@@ -18,6 +19,7 @@ in
       ${kb}
       ${opt}
       ${sl}
+      ${cmd}
       EOF
     '';
     plugins = with vimPlugins; [
@@ -60,6 +62,11 @@ in
         plugin = nvim-autopairs;
         type = "lua";
         config = builtins.readFile (./plugins/autopairs.lua);
+      }
+      {
+        plugin = neorg;
+        type = "lua";
+        config = builtins.readFile (./plugins/neorg.lua);
       }
       {
         plugin = cmp-nvim-lsp;

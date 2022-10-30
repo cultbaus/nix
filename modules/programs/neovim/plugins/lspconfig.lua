@@ -2,7 +2,32 @@ local lspconfig = require 'lspconfig'
 local cmp = require 'cmp_nvim_lsp'
 
 local capabilities = cmp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local on_attach = function(client, bufnr) end
+local on_attach = function(client, _)
+    local lsp_highlight = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = true })
+    if client.server_capabilities.document_highlighting then
+        vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+            pattern = { '<buffer>' },
+            callback = function()
+                vim.lsp.buf.document_highlight()
+            end,
+            group = lsp_highlight,
+        })
+
+        vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
+            pattern = { '<buffer>' },
+            command = 'silent! vim.lsp.buf.document_highlight',
+            group = lsp_highlight,
+        })
+
+        vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+            pattern = { '<buffer>' },
+            callback = function()
+                vim.lsp.buf.clear_references()
+            end,
+            group = lsp_highlight,
+        })
+    end
+end
 
 lspconfig.gopls.setup {
     on_attach = function(client, bufnr)
@@ -34,7 +59,7 @@ lspconfig.sumneko_lua.setup {
                 version = 'LuaJIT',
             },
             diagnostics = {
-                globals = { 'vim' },
+                globals = { 'vim', 'awesome', 'client', 'screen' },
             },
             workspace = {
                 library = {
