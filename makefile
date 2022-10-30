@@ -19,7 +19,7 @@ gc: ## collect garbage
 	@nix-collect-garbage
 
 .PHONY: home
-home: ## rebuild home-manager specific configurations (impure)
+home: ## rebuild home-manager specific configurations
 	@git-crypt unlock && \
 		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
 		./result/activate && \
@@ -27,7 +27,7 @@ home: ## rebuild home-manager specific configurations (impure)
 		git-crypt lock
 
 .PHONY: nolock
-nolock: ## rebuild home-manager specific configurations (impure)
+nolock: ## rebuild home-manager specific configurations
 	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
 		./result/activate && \
 		rm -rf result
@@ -50,9 +50,9 @@ optimise: clean ## clean & optimise the nix store
 	@nix-store --optimise
 
 .PHONY: generate
-generate: ## generate node-packages.nix (impure)
+generate: ## generate node-packages.nix
 	@cd modules/dev/packages && \
-		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-14 -i ./node-packages.json -o node-packages.nix"
+		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-16 -i ./node-packages.json -o node-packages.nix"
 
 .PHONY: clean
 clean: ## cleans & deletes old generations, collects garbage
