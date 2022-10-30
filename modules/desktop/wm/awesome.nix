@@ -10,8 +10,11 @@ in
     enable = mkEnableOption "awesome";
   };
   config = mkIf cfg.enable {
-    home.file = {
-      ".config/awesome".source = config.lib.file.mkOutOfStoreSymlink awesomeConfig;
+    home = {
+      file = {
+        ".config/awesome".source = config.lib.file.mkOutOfStoreSymlink awesomeConfig;
+      };
+      packages = with pkgs; [ dmenu ];
     };
     xsession.windowManager.awesome = {
       enable = true;
