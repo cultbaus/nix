@@ -33,14 +33,7 @@ update: ## runs `nix flake update`
 	@nix flake update $(FLAKE_ROOT)
 
 .PHONY: upgrade
-upgrade: ## updates and rebuilds system-wide & home-manager configurations
-	@nix flake update $(FLAKE_ROOT) && \
-		sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#" && \
-		cd modules/dev/packages && \
-		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-16 -i ./node-packages.json -o node-packages.nix" && \
-		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
-		./result/activate && \
-		rm -rf result
+upgrade: update rebuild generate home ## updates and rebuilds system-wide & home-manager configurations
 
 .PHONY: optimise
 optimise: clean ## clean & optimise the nix store
