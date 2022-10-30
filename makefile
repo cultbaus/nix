@@ -20,13 +20,17 @@ gc: ## collect garbage
 
 .PHONY: home
 home: ## rebuild home-manager specific configurations (impure)
-	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" --impure && \
+	@git-crypt unlock && \
+		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" --impure && \
 		./result/activate && \
-		rm -rf result
+		rm -rf result && \
+		git-crypt lock
 
 .PHONY: rebuild
 rebuild: ## rebuild system-wide configurations
-	@sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#"
+	@git-crypt unlock && \
+		sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#" && \
+		git-crypt lock
 
 .PHONY: update
 update: ## runs `nix flake update`
