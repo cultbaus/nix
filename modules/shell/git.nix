@@ -1,12 +1,15 @@
 { config, pkgs, libs, ... }:
 {
+  home.packages = with pkgs; [
+    git-crypt
+  ];
+
   programs.git = {
     enable = true;
     userName = "cultbaus";
     userEmail = "cultbaus@gmail.com";
-    signing = {
-      key = "13607BAC29B6A0C0";
-      signByDefault = true;
-    };
+    # signing = {
+    #   signByDefault = true;
+    # };
   };
 }
