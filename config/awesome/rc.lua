@@ -1,14 +1,29 @@
-local awful = require 'awful'
+-- Unmuting audio before the volume signal is emitted will fix errors on startup.
+-- require("awful").spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ 0")
 
-C = {}
+-- Define defaults
+c = {}
 
-C.terminal = 'alacritty'
-C.browser = 'firefox'
-C.mod = 'Mod4'
+c.terminal = "alacritty"
+c.browser = "firefox"
+c.files = "nautilus"
+c.editor = os.getenv("EDITOR") or "nvim"
+c.editor_cmd = c.terminal .. " -e " .. c.editor
+c.modkey = "Mod4"
 
-awful.keyboard.append_global_keybindings {
-    awful.key({ C.mod, 'Shift' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
-    awful.key({}, 'Return', function()
-        awful.spawn(C.terminal)
-    end, { description = 'open terminal', group = 'launcher' }),
+-- global config options
+C = {
+    terminal = "alacritty",
+    browser = "firefox",
+    editor = os.getenv("EDITOR") or "nvim",
+    app_launcher_cmd = "dmenu_run",
+    modkey = "Mod4",
+    altkey = "Mod1",
+    neorg = true,
 }
+
+-- Config
+require("awful.autofocus")
+require("themes.linear")
+require("config")
+require("signals")
