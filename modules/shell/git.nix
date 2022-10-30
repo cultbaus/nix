@@ -1,4 +1,7 @@
 { config, pkgs, libs, ... }:
+let
+  key = "${config.home.homeDirectory}/.secrets/secret-key-id";
+in
 {
   home.packages = with pkgs; [
     git-crypt
@@ -8,8 +11,9 @@
     enable = true;
     userName = "cultbaus";
     userEmail = "cultbaus@gmail.com";
-    # signing = {
-    #   signByDefault = true;
-    # };
+    signing = {
+      key = key;
+      signByDefault = true;
+    };
   };
 }
