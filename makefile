@@ -20,30 +20,27 @@ gc: ## collect garbage
 
 .PHONY: home
 home: ## rebuild home-manager specific configurations
-	@git-crypt unlock && \
-		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
-		./result/activate && \
-		rm -rf result && \
-		git-crypt lock
-
-.PHONY: nolock
-nolock: ## rebuild home-manager specific configurations
 	@nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
 		./result/activate && \
 		rm -rf result
 
 .PHONY: rebuild
 rebuild: ## rebuild system-wide configurations
-	@git-crypt unlock && \
-		sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#" && \
-		git-crypt lock
+		@sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#"
 
 .PHONY: update
 update: ## runs `nix flake update`
 	@nix flake update $(FLAKE_ROOT)
 
 .PHONY: upgrade
-upgrade: update rebuild generate home ## updates and rebuilds system-wide & home-manager configurations
+upgrade: ## updates and rebuilds system-wide & home-manager configurations
+	@nix flake update $(FLAKE_ROOT) && \
+		sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#" && \
+		cd modules/dev/packages && \
+		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-16 -i ./node-packages.json -o node-packages.nix" && \
+		nix build "$(FLAKE_ROOT)#$(HMC).$(USER).activationPackage" && \
+		./result/activate && \
+		rm -rf result
 
 .PHONY: optimise
 optimise: clean ## clean & optimise the nix store
@@ -52,11 +49,10 @@ optimise: clean ## clean & optimise the nix store
 .PHONY: generate
 generate: ## generate node-packages.nix
 	@cd modules/dev/packages && \
-		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-16 -i ./node-packages.json -o node-packages.nix"
+		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-14 -i ./node-packages.json -o node-packages.nix"
 
 .PHONY: clean
 clean: ## cleans & deletes old generations, collects garbage
 	@nix-env --delete-generations old && \
 		nix-store --gc && \
-		nix-collect-garbage -d && \
-
+		nix-collect-garbage -d
