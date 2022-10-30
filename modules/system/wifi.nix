@@ -1,9 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  secrets = import ../../.secrets/sk.nix { };
-  # ssid = builtins.readFile ../../.secrets/wifi-ssid;
-  # psk = builtins.readFile ../../.secrets/wifi-psk;
+  secrets = import ../../.secrets/secrets.nix { };
 in
 {
   networking = {
@@ -11,7 +9,7 @@ in
     wireless = {
       enable = true;
       networks = {
-        ${secrets.wif.ssid} = {
+        ${secrets.wifi.ssid} = {
           psk = secrets.wifi.psk;
         };
       };
