@@ -24,7 +24,29 @@ in
     '';
     plugins = with vimPlugins; [
       {
-        plugin = nvim-treesitter.withPlugins (plugins: tree-sitter.allGrammars);
+        plugin = nvim-treesitter.withPlugins (plugins: with plugins; [
+          # TODO: 30-10-2022 commented out grammars are broken
+          # instead, they are manually installed via treesitter config
+          # tree-sitter-bash
+          tree-sitter-cmake
+          tree-sitter-css
+          tree-sitter-dockerfile
+          tree-sitter-go
+          tree-sitter-gomod
+          tree-sitter-graphql
+          tree-sitter-html
+          tree-sitter-javascript
+          tree-sitter-json
+          tree-sitter-lua
+          # tree-sitter-make
+          tree-sitter-nix
+          tree-sitter-norg
+          tree-sitter-prisma
+          tree-sitter-rust
+          # tree-sitter-typescript
+          # tree-sitter-tsx
+          tree-sitter-yaml
+        ]);
         type = "lua";
         config = builtins.readFile (./plugins/treesitter.lua);
       }
