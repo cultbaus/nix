@@ -16,5 +16,6 @@
     (ripgrep.override { withPCRE2 = true; })
     unzip
     xclip
+    killall
   ];
 }
