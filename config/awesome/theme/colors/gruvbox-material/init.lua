@@ -16,6 +16,7 @@ m.white = '#d4be98'
 m.bg_alt = m.black
 m.urgent = m.red
 
+m.font = 'JetBrainsMono 14'
 m.wall = path .. 'bg.jpg'
 
 return m
