@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
+    ./launcher
     ./picom.nix
     ./wm
   ];

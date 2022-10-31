@@ -13,6 +13,10 @@
         i3.enable = false;
         awesome.enable = true;
       };
+      launcher = {
+        dmenu.enable = false;
+        rofi.enable = true;
+      };
       picom.enable = true;
     };
     dev = {

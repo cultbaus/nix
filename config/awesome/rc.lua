@@ -19,15 +19,26 @@ if awesome.startup_errors then
     }
 end
 
+local dmenu = false
+local rofi = true
 GLOBAL_CONFIG = {
+    -- opts
+    dmenu = dmenu,
+    rofi = rofi,
+    neorg = true,
+
+    -- apps
+    app_launcher_cmd = dmenu and 'dmenu_run' or 'rofi -show run',
     terminal = 'alacritty',
-    theme = 'gruvbox-material',
     browser = 'firefox',
     editor = os.getenv 'EDITOR' or 'nvim',
-    app_launcher_cmd = 'dmenu_run',
+
+    -- theme color
+    theme = 'gruvbox-material',
+
+    -- key
     modkey = 'Mod4',
     altkey = 'Mod1',
-    neorg = true,
 }
 
 themes.init(awful, beautiful, wibox)

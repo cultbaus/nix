@@ -14,7 +14,6 @@ in
       file = {
         ".config/awesome".source = config.lib.file.mkOutOfStoreSymlink awesomeConfig;
       };
-      packages = with pkgs; [ dmenu ];
     };
     xsession.windowManager.awesome = {
       enable = true;
