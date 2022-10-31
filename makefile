@@ -14,9 +14,13 @@ help: ## prints this help message
 check: ## run `nix flake check` on your configuration
 	@nix flake check "$(FLAKE_ROOT)#"
 
-.PHONY: gc
-gc: ## collect garbage
+.PHONY: gcu
+gcu: ## collect garbage for the user
 	@nix-collect-garbage -d
+
+.PHONY: gcs
+gcs: ## collect garbage for the system
+	@sudo nix-collect-garbage -d
 
 .PHONY: home
 home: ## rebuild home-manager specific configurations
