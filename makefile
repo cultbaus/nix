@@ -16,7 +16,7 @@ check: ## run `nix flake check` on your configuration
 
 .PHONY: gc
 gc: ## collect garbage
-	@nix-collect-garbage
+	@nix-collect-garbage -d
 
 .PHONY: home
 home: ## rebuild home-manager specific configurations
@@ -26,7 +26,7 @@ home: ## rebuild home-manager specific configurations
 
 .PHONY: rebuild
 rebuild: ## rebuild system-wide configurations
-		@sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#"
+	@sudo nixos-rebuild switch --flake "$(FLAKE_ROOT)#"
 
 .PHONY: update
 update: ## runs `nix flake update`
