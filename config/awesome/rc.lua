@@ -1,4 +1,5 @@
 local naughty = require 'naughty'
+local awful = require 'awful'
 
 if awesome.startup_errors then
     naughty.notify {
@@ -20,5 +21,8 @@ C = {
 
 require 'awful.autofocus'
 require 'binds'
-require 'signals'
 require 'rules'
+require 'theme'
+require 'signals'
+
+awful.spawn.with_shell '~/.config/awesome/autostart'
