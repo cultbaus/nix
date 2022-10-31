@@ -3,21 +3,28 @@ local M = {}
 -- open a terminal
 function M.open_terminal(awful)
     return function()
-        awful.spawn(C.terminal)
+        awful.spawn(GLOBAL_CONFIG.terminal)
     end
 end
 
 -- open editor
 function M.open_editor(awful)
     return function()
-        awful.spawn(C.terminal .. ' -e ' .. C.editor)
+        awful.spawn(GLOBAL_CONFIG.terminal .. ' -e ' .. GLOBAL_CONFIG.editor)
     end
 end
 
 -- open editor in neorg workspace
 function M.open_neorg_ws(awful, workspace)
     return function()
-        local cmd = C.terminal .. ' -e ' .. C.editor .. ' -c ' .. '"' .. 'Neorg workspace ' .. workspace .. '"'
+        local cmd = GLOBAL_CONFIG.terminal
+            .. ' -e '
+            .. GLOBAL_CONFIG.editor
+            .. ' -c '
+            .. '"'
+            .. 'Neorg workspace '
+            .. workspace
+            .. '"'
         awful.spawn(cmd)
     end
 end
@@ -25,14 +32,14 @@ end
 -- open a browser
 function M.open_browser(awful)
     return function()
-        awful.spawn(C.browser)
+        awful.spawn(GLOBAL_CONFIG.browser)
     end
 end
 
 -- open app launcher
 function M.open_app_launcher(awful)
     return function()
-        awful.spawn(C.app_launcher_cmd)
+        awful.spawn(GLOBAL_CONFIG.app_launcher_cmd)
     end
 end
 

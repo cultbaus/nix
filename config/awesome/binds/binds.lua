@@ -7,8 +7,8 @@ function M.setup(opt)
         opt.key.press_mod('d', opt.action.open_app_launcher(opt.awful), { when = true }),
         opt.key.press_mod('l', opt.action.open_browser(opt.awful), { when = true }),
         opt.key.press_mod('k', opt.action.open_editor(opt.awful), { when = true }),
-        opt.key.press_mod('w', opt.action.open_neorg_ws(opt.awful, 'work'), { when = C.neorg }),
-        opt.key.press_mod('p', opt.action.open_neorg_ws(opt.awful, 'home'), { when = C.neorg }),
+        opt.key.press_mod('w', opt.action.open_neorg_ws(opt.awful, 'work'), { when = GLOBAL_CONFIG.neorg }),
+        opt.key.press_mod('p', opt.action.open_neorg_ws(opt.awful, 'home'), { when = GLOBAL_CONFIG.neorg }),
 
         -- awesome control
         opt.key.press_shift_mod('l', awesome.quit, { when = true }),

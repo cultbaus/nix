@@ -19,7 +19,7 @@ if awesome.startup_errors then
     }
 end
 
-C = {
+GLOBAL_CONFIG = {
     terminal = 'alacritty',
     browser = 'firefox',
     editor = os.getenv 'EDITOR' or 'nvim',

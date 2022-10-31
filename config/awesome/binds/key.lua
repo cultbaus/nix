@@ -9,7 +9,7 @@ return function(awful)
 
     function m.press_mod(key, action, opts)
         if opts.when then
-            return awful.key({ C.modkey }, key, action)
+            return awful.key({ GLOBAL_CONFIG.modkey }, key, action)
         end
     end
 
@@ -21,20 +21,20 @@ return function(awful)
 
     function m.press_alt(key, action, opts)
         if opts.when then
-            return awful.key({ C.altkey }, key, action)
+            return awful.key({ GLOBAL_CONFIG.altkey }, key, action)
         end
     end
 
     function m.press_shift_mod(key, action, opts)
         if opts.when then
-            return awful.key({ C.modkey, 'Shift' }, key, action)
+            return awful.key({ GLOBAL_CONFIG.modkey, 'Shift' }, key, action)
         end
     end
 
     function m.press_one_of_mod(keygroup, action, opts)
         if opts.when then
             return awful.key {
-                modifiers = { C.modkey },
+                modifiers = { GLOBAL_CONFIG.modkey },
                 keygroup = keygroup,
                 on_press = action,
             }
@@ -44,7 +44,7 @@ return function(awful)
     function m.press_one_of_shift_mod(keygroup, action, opts)
         if opts.when then
             return awful.key {
-                modifiers = { C.modkey, 'Shift' },
+                modifiers = { GLOBAL_CONFIG.modkey, 'Shift' },
                 keygroup = keygroup,
                 on_press = action,
             }
