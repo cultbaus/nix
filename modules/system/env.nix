@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  systemd.services.mpd.environment = {
+    XDG_RUNTIME_DIR = "/run/user/1000";
+  };
+
   programs.bash.promptInit = builtins.readFile ./bashrc.sh;
   environment =
     {
