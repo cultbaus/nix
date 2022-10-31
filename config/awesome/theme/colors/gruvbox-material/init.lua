@@ -17,6 +17,6 @@ m.bg_alt = m.black
 m.urgent = m.red
 
 m.font = 'JetBrainsMono 14'
-m.wall = path .. 'bg.jpg'
+m.wall = path .. 'cabin.png'
 
 return m
