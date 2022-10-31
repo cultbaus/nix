@@ -18,7 +18,6 @@ end
 function M.open_neorg_ws(awful, workspace)
     return function()
         local cmd = C.terminal .. ' -e ' .. C.editor .. ' -c ' .. '"' .. 'Neorg workspace ' .. workspace .. '"'
-        print(cmd)
         awful.spawn(cmd)
     end
 end
@@ -84,6 +83,16 @@ end
 function M.toggle_float(w)
     w.floating = not w.floating
     w:raise()
+end
+
+function M.toggle_rootmenu()
+    print 'root menu toggle'
+    -- Rootmenu:toggle()
+end
+
+function M.hide_rootmenu()
+    print 'root menu hide'
+    -- Rootmenu:hide()
 end
 
 return M
