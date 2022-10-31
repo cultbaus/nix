@@ -2,7 +2,7 @@ local M = {}
 
 function M.init(beautiful)
     local dpi = beautiful.xresources.apply_dpi
-    local color = require 'themes.colors' 'gruvbox-material'
+    local color = require 'themes.colors' (GLOBAL_CONFIG.theme)
 
     local theme = {}
 
@@ -29,37 +29,6 @@ function M.init(beautiful)
     theme.titlebar_fg_focus = color.fg
     theme.titlebar_fg_urgent = color.urgent
     theme.titlebar_fg_minimize = color.bg_alt
-
-    -- Tasklist
-    theme.tasklist_bg_normal = color.bg
-    theme.tasklist_bg_focus = color.bg
-    theme.tasklist_bg_urgent = color.bg
-    theme.tasklist_bg_minimize = color.bg
-
-    theme.tasklist_fg_normal = color.fg .. '25'
-    theme.tasklist_fg_focus = color.fg
-    theme.tasklist_fg_urgent = color.urgent
-    theme.tasklist_fg_minimize = color.fg .. '25'
-
-    theme.tasklist_font_minimized = color.font_alt
-    theme.tasklist_plain_task_name = true
-
-    -- Taglist
-    theme.taglist_bg_normal = color.bg
-    theme.taglist_bg_focus = color.bg
-    theme.taglist_bg_urgent = color.bg
-    theme.taglist_bg_minimize = color.bg
-    theme.taglist_bg_empty = color.bg
-    theme.taglist_bg_occupied = color.bg
-
-    theme.taglist_fg_normal = color.bg_alt
-    theme.taglist_fg_focus = color.fg
-    theme.taglist_fg_urgent = color.urgent
-    theme.taglist_fg_minimize = color.fg
-    theme.taglist_fg_empty = color.fg .. '25'
-    theme.taglist_fg_occupied = color.fg .. '75'
-
-    theme.taglist_spacing = dpi(10)
 
     -- Misc
     theme.useless_gap = dpi(10)

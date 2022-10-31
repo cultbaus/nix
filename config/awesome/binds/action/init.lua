@@ -140,4 +140,6 @@ function M.lower_brightness(awful)
     end
 end
 
+M.dmenu = require 'binds.action.dmenu'
+
 return M

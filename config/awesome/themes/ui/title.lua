@@ -11,7 +11,7 @@ function M.init(awful, beautiful, wibox)
     client.connect_signal('request::titlebars', function(c)
         awful
             .titlebar(c, {
-                size = dpi(37.5),
+                size = dpi(44.5),
             })
             :setup {
                 {

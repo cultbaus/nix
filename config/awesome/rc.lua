@@ -21,6 +21,7 @@ end
 
 GLOBAL_CONFIG = {
     terminal = 'alacritty',
+    theme = 'gruvbox-material',
     browser = 'firefox',
     editor = os.getenv 'EDITOR' or 'nvim',
     app_launcher_cmd = 'dmenu_run',
