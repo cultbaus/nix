@@ -2,7 +2,6 @@ require 'awful.autofocus'
 
 local awful = require 'awful'
 local beautiful = require 'beautiful'
-local gears = require 'gears'
 local naughty = require 'naughty'
 local ruled = require 'ruled'
 local wibox = require 'wibox'
@@ -30,9 +29,9 @@ C = {
     neorg = true,
 }
 
-themes.init(gears, beautiful)
+themes.init(awful, beautiful, wibox)
+signals.init(awful, beautiful, naughty, wibox)
 rules.init(awful, ruled)
 binds.init(awful)
-signals.init(awful, beautiful, naughty, wibox)
 
 awful.spawn.with_shell '~/.config/awesome/autostart'

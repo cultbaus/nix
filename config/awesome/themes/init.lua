@@ -1,10 +1,12 @@
+local ui = require 'themes.ui'
+local theme = require 'themes.theme'
+
 local M = {}
 
-function M.init(gears, beautiful)
-    local theme_path = gears.filesystem.get_configuration_dir() .. 'themes/theme.lua'
-    beautiful.init(theme_path)
+function M.init(awful, beautiful, wibox)
+    beautiful.init(theme.init(beautiful))
 
-    require 'themes.ui'
+    ui.init(awful, beautiful, wibox)
 end
 
 return M
