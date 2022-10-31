@@ -3,6 +3,10 @@
   programs.bash.promptInit = builtins.readFile ./bashrc.sh;
   environment =
     {
+      systemPackages = with pkgs; [
+        brightnessctl
+        pulseaudio # JUST for pactl - do not enable
+      ];
       sessionVariables =
         rec {
           XCURSOR_SIZE = "64";
