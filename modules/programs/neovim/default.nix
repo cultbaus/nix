@@ -13,6 +13,7 @@ in
     enable = true;
     package = neovim-nightly;
     vimAlias = true;
+    viAlias = true;
     extraConfig = ''
       lua << EOF
       ${hl}

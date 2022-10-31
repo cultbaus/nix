@@ -33,6 +33,7 @@ in
 
         window = {
           transparency = "real";
+          width = mkLiteral "33.3%";
         };
 
         mainbox = {
@@ -55,11 +56,11 @@ in
         };
 
         listview = {
-          lines = 8;
+          lines = 4;
         };
 
         element = {
-          children = map mkLiteral [ "element-icon" "element-text" ];
+          children = map mkLiteral [ "element-text" ];
         };
 
         "element-icon" = {
@@ -67,7 +68,7 @@ in
         };
 
         "element-text" = {
-          padding = mkLiteral "10px 0";
+          padding = mkLiteral "10px 10px";
           text-color = mkLiteral "@fg-alt";
         };
 
