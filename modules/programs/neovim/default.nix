@@ -3,10 +3,38 @@
 with pkgs;
 let
   hl = builtins.readFile ./extras/highlights.lua;
+
   kb = builtins.readFile ./extras/keybindings.lua;
+
   opt = builtins.readFile ./extras/options.lua;
+
   sl = builtins.readFile ./extras/statusline.lua;
+
   cmd = builtins.readFile ./extras/commands.lua;
+
+  parsers = (plugins: with plugins; [
+    # TODO: 30-10-2022 commented out grammars are broken
+    # instead, they are manually installed via treesitter config
+    # tree-sitter-bash
+    tree-sitter-cmake
+    tree-sitter-css
+    tree-sitter-dockerfile
+    tree-sitter-go
+    tree-sitter-gomod
+    tree-sitter-graphql
+    tree-sitter-html
+    tree-sitter-javascript
+    tree-sitter-json
+    tree-sitter-lua
+    # tree-sitter-make
+    tree-sitter-nix
+    tree-sitter-norg
+    tree-sitter-prisma
+    tree-sitter-rust
+    # tree-sitter-typescript
+    # tree-sitter-tsx
+    tree-sitter-yaml
+  ]);
 in
 {
   programs.neovim = {
@@ -25,29 +53,7 @@ in
     '';
     plugins = with vimPlugins; [
       {
-        plugin = nvim-treesitter.withPlugins (plugins: with plugins; [
-          # TODO: 30-10-2022 commented out grammars are broken
-          # instead, they are manually installed via treesitter config
-          # tree-sitter-bash
-          tree-sitter-cmake
-          tree-sitter-css
-          tree-sitter-dockerfile
-          tree-sitter-go
-          tree-sitter-gomod
-          tree-sitter-graphql
-          tree-sitter-html
-          tree-sitter-javascript
-          tree-sitter-json
-          tree-sitter-lua
-          # tree-sitter-make
-          tree-sitter-nix
-          tree-sitter-norg
-          tree-sitter-prisma
-          tree-sitter-rust
-          # tree-sitter-typescript
-          # tree-sitter-tsx
-          tree-sitter-yaml
-        ]);
+        plugin = nvim-treesitter.withPlugins parsers;
         type = "lua";
         config = builtins.readFile (./plugins/treesitter.lua);
       }
