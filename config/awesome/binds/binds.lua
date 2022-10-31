@@ -4,9 +4,9 @@ function M.setup(opt)
     opt.awful.keyboard.append_global_keybindings {
         -- application control
         opt.key.press_mod('Return', opt.action.open_terminal(opt.awful), { when = true }),
+        opt.key.press_mod('d', opt.action.open_app_launcher(opt.awful), { when = true }),
         opt.key.press_mod('l', opt.action.open_browser(opt.awful), { when = true }),
         opt.key.press_mod('k', opt.action.open_editor(opt.awful), { when = true }),
-        opt.key.press_mod('d', opt.action.open_app_launcher(opt.awful), { when = true }),
         opt.key.press_mod('w', opt.action.open_neorg_ws(opt.awful, 'work'), { when = C.neorg }),
         opt.key.press_mod('p', opt.action.open_neorg_ws(opt.awful, 'home'), { when = C.neorg }),
 
@@ -18,6 +18,14 @@ function M.setup(opt)
         opt.key.press_one_of_mod('numrow', opt.action.view_tags(opt.awful), { when = true }),
         opt.key.press_one_of_shift_mod('numrow', opt.action.move_window(opt.awful), { when = true }),
         opt.key.press_mod('Tab', opt.action.focus_window(opt.awful, 1), { when = true }),
+
+        -- misc
+        opt.key.press_key('Print', opt.action.take_screenhot(opt.awful), { when = true }),
+        opt.key.press_key('XF86AudioRaiseVolume', opt.action.raise_volume(opt.awful), { when = true }),
+        opt.key.press_key('XF86AudioLowerVolume', opt.action.lower_volume(opt.awful), { when = true }),
+        opt.key.press_key('XF86AudioMute', opt.action.mute_volume(opt.awful), { when = true }),
+        opt.key.press_key('XF86MonBrightnessUp', opt.action.raise_brightness(opt.awful), { when = true }),
+        opt.key.press_key('XF86MonBrightnessDown', opt.action.lower_brightness(opt.awful), { when = true }),
     }
 
     opt.awful.mouse.append_global_mousebindings {

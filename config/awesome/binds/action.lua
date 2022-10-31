@@ -85,14 +85,52 @@ function M.toggle_float(w)
     w:raise()
 end
 
-function M.toggle_rootmenu()
-    print 'root menu toggle'
-    -- Rootmenu:toggle()
+-- take a screenhot (requires maim and xclip)
+function M.take_screenhot(awful)
+    return function()
+        awful.spawn.with_shell 'screenshot'
+    end
 end
 
-function M.hide_rootmenu()
-    print 'root menu hide'
-    -- Rootmenu:hide()
+-- adjust volume - requires pulseaudio (for pactl, not required to be enabled)
+local function adjust_volume(awful, unit)
+    awful.spawn.with_shell 'pactl set-sink-mute @DEFAULT_SINK@ 0'
+    awful.spawn.with_shell('pactl set-sink-volume @DEFAULT_SINK@ ' .. unit)
+end
+
+-- adjust brightness, requires brightnessctl
+local function adjust_brightness(awful, unit)
+    awful.spawn.with_shell('brightnessctl -q s ' .. unit)
+end
+
+function M.raise_volume(awful)
+    return function()
+        adjust_volume(awful, '+5%')
+    end
+end
+
+function M.lower_volume(awful)
+    return function()
+        adjust_volume(awful, '-5%')
+    end
+end
+
+function M.mute_volume(awful)
+    return function()
+        awful.spawn.with_shell 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+    end
+end
+
+function M.raise_brightness(awful)
+    return function()
+        adjust_brightness(awful, '5%+')
+    end
+end
+
+function M.lower_brightness(awful)
+    return function()
+        adjust_brightness(awful, '5%-')
+    end
 end
 
 return M

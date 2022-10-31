@@ -1,6 +1,12 @@
 return function(awful)
     local m = {}
 
+    function m.press_key(key, action, opts)
+        if opts.when then
+            return awful.key({}, key, action)
+        end
+    end
+
     function m.press_mod(key, action, opts)
         if opts.when then
             return awful.key({ C.modkey }, key, action)
