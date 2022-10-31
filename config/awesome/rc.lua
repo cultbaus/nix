@@ -1,5 +1,16 @@
-local naughty = require 'naughty'
+require 'awful.autofocus'
+
 local awful = require 'awful'
+local beautiful = require 'beautiful'
+local gears = require 'gears'
+local naughty = require 'naughty'
+local ruled = require 'ruled'
+local wibox = require 'wibox'
+
+local binds = require 'binds'
+local rules = require 'rules'
+local signals = require 'signals'
+local themes = require 'themes'
 
 if awesome.startup_errors then
     naughty.notify {
@@ -19,10 +30,9 @@ C = {
     neorg = true,
 }
 
-require 'awful.autofocus'
-require 'binds'
-require 'rules'
-require 'theme'
-require 'signals'
+themes.init(gears, beautiful)
+rules.init(awful, ruled)
+binds.init(awful)
+signals.init(awful, beautiful, naughty, wibox)
 
 awful.spawn.with_shell '~/.config/awesome/autostart'

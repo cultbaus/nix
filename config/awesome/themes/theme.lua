@@ -1,6 +1,6 @@
 local beautiful = require 'beautiful'
 local dpi = beautiful.xresources.apply_dpi
-local color = require 'theme.colors' 'gruvbox-material'
+local color = require 'themes.colors' 'gruvbox-material'
 
 local theme = {}
 

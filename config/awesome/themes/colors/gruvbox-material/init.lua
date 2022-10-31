@@ -1,4 +1,4 @@
-local path = require('gears').filesystem.get_configuration_dir() .. 'theme/colors/gruvbox-material/'
+local path = require('gears').filesystem.get_configuration_dir() .. 'themes/colors/gruvbox-material/'
 
 local m = {}
 
