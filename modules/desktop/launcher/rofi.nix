@@ -12,7 +12,8 @@ in
   config = mkIf cfg.enable {
     programs.rofi = {
       enable = true;
-      font = "JetBrainsMono 32";
+      terminal = "alacritty";
+      font = "JetBrainsMono Nerd Font 32";
 
       theme = {
         "*" = {

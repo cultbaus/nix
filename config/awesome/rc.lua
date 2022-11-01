@@ -28,7 +28,7 @@ GLOBAL_CONFIG = {
     neorg = true,
 
     -- apps
-    app_launcher_cmd = dmenu and 'dmenu_run' or 'rofi -show run',
+    app_launcher_cmd = dmenu and 'dmenu_run' or 'rofi -show drun -display-drun " "',
     terminal = 'alacritty',
     browser = 'firefox',
     editor = os.getenv 'EDITOR' or 'nvim',
