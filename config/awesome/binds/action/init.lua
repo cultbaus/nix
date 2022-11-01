@@ -1,5 +1,11 @@
 local M = {}
 
+function M.send_notif(awful)
+    return function()
+        awful.spawn 'notif'
+    end
+end
+
 -- open a terminal
 function M.open_terminal(awful)
     return function()
@@ -92,10 +98,23 @@ function M.toggle_float(w)
     w:raise()
 end
 
+local function ss(awful)
+    return function(opt)
+        awful.spawn.with_shell('screenshot ' .. opt)
+    end
+end
+
 -- take a screenhot (requires maim and xclip)
 function M.take_screenhot(awful)
     return function()
-        awful.spawn.with_shell 'screenshot'
+        ss(awful) 'whole'
+    end
+end
+
+-- take a screenhot of a selection (requires maim and xclip)
+function M.take_screenhot_selection(awful)
+    return function()
+        ss(awful) 'selection'
     end
 end
 

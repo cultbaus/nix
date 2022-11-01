@@ -7,4 +7,3 @@ run() {
 }
 
 run startup xset
-run startup picom

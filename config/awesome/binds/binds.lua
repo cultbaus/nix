@@ -5,6 +5,7 @@ function M.setup(opt)
         -- application control
         opt.key.press_mod('Return', opt.action.open_terminal(opt.awful), { when = true }),
         opt.key.press_mod('d', opt.action.open_app_launcher(opt.awful), { when = true }),
+        opt.key.press_mod('s', opt.action.send_notif(opt.awful), { when = GLOBAL_CONFIG.neorg }),
         opt.key.press_mod('l', opt.action.open_browser(opt.awful), { when = true }),
         opt.key.press_mod('k', opt.action.open_editor(opt.awful), { when = true }),
         opt.key.press_mod('w', opt.action.open_neorg_ws(opt.awful, 'work'), { when = GLOBAL_CONFIG.neorg }),
