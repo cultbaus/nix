@@ -13,6 +13,14 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
     group = diagnostic_hover,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+    pattern = { '*.md' },
+    callback = function()
+        vim.o.wrap = true
+    end,
+    group = diagnostic_hover,
+})
+
 -- Colors
 vim.cmd 'filetype plugin indent on'
 vim.cmd 'syntax on'
