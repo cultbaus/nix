@@ -26,7 +26,7 @@ to aggressively clean up: `make clean`
 
 #### secrets
 
-secrets are contained inside of the [.secrets](./secrets) directory and it's just a single `.nix` file that has three values:
+secrets are contained inside of the [.secrets](./.secrets) directory and it's just a single `.nix` file that has three values:
 
 ```nix
 { ... }:
