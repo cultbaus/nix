@@ -18,7 +18,8 @@
       glog = "git log --pretty\=format:'%n%ar %n%Cred%h %Cblue%an <%ae> %n%Cgreen%s%n' --name-only";
       glogme = "glog --author\='\(Nicholas\)\|\(gebhartn\)'";
       ncmpcpp = "ncmpcpp - b ~/.config/ncmpcpp/bindings";
-      pro = "cd ~/projects/";
+      work = "cd ~/work/";
+      pro = "cd ~/personal/";
       pkg = "cd ~/packages";
       dwn = "cd ~/media/downloads";
       mus = "cd ~/media/music";
