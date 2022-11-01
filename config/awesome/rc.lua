@@ -41,7 +41,7 @@ GLOBAL_CONFIG = {
     altkey = 'Mod1',
 }
 
-themes.init(awful, beautiful, wibox)
+themes.init(awful, beautiful, naughty, ruled, wibox)
 signals.init(awful, beautiful, naughty, wibox)
 rules.init(awful, ruled)
 binds.init(awful)
