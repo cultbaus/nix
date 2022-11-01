@@ -9,7 +9,6 @@
 
   home.packages = with pkgs; [
     alsa-utils
-    feh
     fd
     gnumake
     maim

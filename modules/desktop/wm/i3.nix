@@ -9,6 +9,7 @@ in
     enable = mkEnableOption "i3";
   };
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ feh ];
     xsession.windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
