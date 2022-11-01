@@ -18,7 +18,6 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
     callback = function()
         vim.o.wrap = true
     end,
-    group = diagnostic_hover,
 })
 
 -- Colors
