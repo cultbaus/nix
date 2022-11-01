@@ -9,6 +9,7 @@
     {
       systemPackages = with pkgs; [
         brightnessctl
+        libnotify
         pulseaudio # JUST for pactl - do not enable
       ];
       sessionVariables =
