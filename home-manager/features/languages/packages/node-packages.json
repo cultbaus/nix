@@ -1,0 +1,7 @@
+[
+  "@fsouza/prettierd",
+  "eslint_d",
+  "typescript",
+  "typescript-language-server",
+  "bash-language-server"
+]

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+run() {
+  if ! pgrep -f "$2"; then
+    "$@" &
+  fi
+}
+
+run startup xset

@@ -2,62 +2,63 @@
   description = "NixOS";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hardware.url = "github:nixos/nixos-hardware";
+
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , neovim-nightly
-    , nixpkgs-f2k
-    , ...
-    }@inputs:
+
+  outputs = { nixpkgs, home-manager, neovim-nightly, nixpkgs-f2k, ... }@inputs:
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-
-      overlays = [
-        nixpkgs-f2k.overlays.window-managers
-        neovim-nightly.overlay
+      forAllSystems = nixpkgs.lib.genAttrs [
+        system
       ];
     in
-    {
-      homeManagerConfigurations = {
-        nil = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+    rec {
+      overlays = {
+        neovim = neovim-nightly.overlay;
+        window-managers = nixpkgs-f2k.overlays.window-managers;
+      };
+
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
+      });
+
+      legacyPackages = forAllSystems (system: import inputs.nixpkgs {
+        inherit system;
+
+        overlays = builtins.attrValues overlays;
+        config.allowUnfree = true;
+      });
+
+      nixosConfigurations = {
+        none = nixpkgs.lib.nixosSystem {
+          inherit system; pkgs = legacyPackages.x86_64-linux;
+          specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/none/user.nix
-            {
-              programs.home-manager.enable = true;
-              nixpkgs.overlays = overlays;
-              home = {
-                username = "nil";
-                homeDirectory = "/home/nil";
-                stateVersion = "22.05";
-              };
-            }
+            ./nixos/configuration.nix
           ];
         };
       };
-      nixosConfigurations = {
-        none = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            {
-              nixpkgs.overlays = overlays;
-            }
-            ./hosts/none/configuration.nix
-          ];
+
+      homeConfigurations = {
+        inherit system; "nil@none" = home-manager.lib.homeManagerConfiguration {
+        pkgs = legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs;
         };
+        modules = [
+          ./home-manager/home.nix
+        ];
+      };
       };
     };
 }
