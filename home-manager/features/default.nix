@@ -4,6 +4,7 @@
     ./awesome
     ./bash
     ./discord
+    ./firefox
     ./git
     ./languages
     ./ncmpcpp

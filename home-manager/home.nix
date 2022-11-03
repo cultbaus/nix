@@ -20,7 +20,6 @@
     brightnessctl
     fd
     feh
-    firefox
     libnotify
     maim
     (ripgrep.override { withPCRE2 = true; })
