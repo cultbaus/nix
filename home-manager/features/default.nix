@@ -3,6 +3,7 @@
     ./alacritty
     ./awesome
     ./bash
+    ./discord
     ./git
     ./languages
     ./ncmpcpp

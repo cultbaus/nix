@@ -3,9 +3,11 @@
   systemd.services.mpd.environment = {
     XDG_RUNTIME_DIR = "/run/user/1000";
   };
-  programs.bash.promptInit = ''
-    export PS1='-> '
-  '';
+  programs.bash = {
+    loginShellInit = builtins.readFile ./login.sh;
+    promptInit = builtins.readFile ./prompt.sh;
+  };
+
   environment =
     {
       sessionVariables =

@@ -19,16 +19,13 @@ if awesome.startup_errors then
     }
 end
 
-local dmenu = false
-local rofi = true
 GLOBAL_CONFIG = {
     -- opts
-    dmenu = dmenu,
-    rofi = rofi,
+    rofi = true,
     neorg = true,
 
     -- apps
-    app_launcher_cmd = dmenu and 'dmenu_run' or 'rofi -show drun -display-drun " "',
+    app_launcher_cmd = 'rofi -show drun -display-drun " "',
     terminal = 'alacritty',
     browser = 'firefox',
     editor = os.getenv 'EDITOR' or 'nvim',

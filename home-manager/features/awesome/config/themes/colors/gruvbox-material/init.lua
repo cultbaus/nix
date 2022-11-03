@@ -17,6 +17,6 @@ m.bg_alt = m.black
 m.urgent = m.red
 
 m.font = 'CascadiaCode 14'
-m.wall = path .. 'water.jpeg' -- cabin.png -- bg.jpg
+m.wall = path .. 'wallpapers/' .. '1667316302858236.jpg'
 
 return m

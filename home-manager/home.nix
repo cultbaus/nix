@@ -1,4 +1,5 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ lib, config, pkgs, ... }: {
+
   imports = [
     ./features
   ];
@@ -18,6 +19,7 @@
     alsa-utils
     brightnessctl
     fd
+    feh
     firefox
     libnotify
     maim
@@ -28,7 +30,6 @@
   ];
 
   programs.home-manager.enable = true;
-  programs.git.enable = true;
 
   systemd.user.startServices = "sd-switch";
 

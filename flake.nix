@@ -13,8 +13,13 @@
     nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
   };
 
-
-  outputs = { nixpkgs, home-manager, neovim-nightly, nixpkgs-f2k, ... }@inputs:
+  outputs =
+    { nixpkgs
+    , home-manager
+    , neovim-nightly
+    , nixpkgs-f2k
+    , ...
+    }@inputs:
     let
       system = "x86_64-linux";
 
@@ -24,6 +29,7 @@
     in
     rec {
       overlays = {
+        default = import ./overlays { inherit inputs; };
         neovim = neovim-nightly.overlay;
         window-managers = nixpkgs-f2k.overlays.window-managers;
       };
@@ -41,7 +47,9 @@
 
       nixosConfigurations = {
         none = nixpkgs.lib.nixosSystem {
-          inherit system; pkgs = legacyPackages.x86_64-linux;
+          inherit system;
+
+          pkgs = legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; };
           modules = [
             ./nixos/configuration.nix
@@ -50,15 +58,17 @@
       };
 
       homeConfigurations = {
-        inherit system; "nil@none" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs;
+        inherit system;
+
+        "nil@none" = home-manager.lib.homeManagerConfiguration {
+          pkgs = legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./home-manager/home.nix
+          ];
         };
-        modules = [
-          ./home-manager/home.nix
-        ];
-      };
       };
     };
 }
