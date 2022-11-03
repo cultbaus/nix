@@ -12,6 +12,7 @@
       "\.\.\.\." = "cd ../../..";
       sudo = "sudo ";
       fuck = "sudo $(history - p !!)";
+      k = "kubectl";
       ls = "ls --color\=always";
       las = "ls -h --author --time-style\=long-iso -dUl -- .* * | awk '{if(NR>2)print \$5, \$7, \$9}'";
       mkdir = "mkdir -pv";
