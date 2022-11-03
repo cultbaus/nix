@@ -22,6 +22,7 @@ function M.setup(opt)
 
         -- misc
         opt.key.press_key('Print', opt.action.take_screenhot(opt.awful), { when = true }),
+        opt.key.press_mod('Print', opt.action.take_screenhot_selection(opt.awful), { when = true }),
         opt.key.press_key('XF86AudioRaiseVolume', opt.action.raise_volume(opt.awful), { when = true }),
         opt.key.press_key('XF86AudioLowerVolume', opt.action.lower_volume(opt.awful), { when = true }),
         opt.key.press_key('XF86AudioMute', opt.action.mute_volume(opt.awful), { when = true }),

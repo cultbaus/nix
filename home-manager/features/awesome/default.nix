@@ -10,7 +10,7 @@ with lib;
 
         xset r rate 200 40
 
-        exec awesome
+        exec awesome 2> ~/.cache/awesome/stderr >1 ~/.cache/awesome/stdout
       '';
       ".config/awesome".source = config.lib.file.mkOutOfStoreSymlink ./config;
     };
