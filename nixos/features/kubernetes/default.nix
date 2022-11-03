@@ -1,5 +1,9 @@
 { pkgs, ... }: {
+  imports = [
+    ./helm
+  ];
   environment.systemPackages = with pkgs; [
-    helmfile
+    kubectl
+    kind
   ];
 }

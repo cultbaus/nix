@@ -3,8 +3,7 @@
     ./docker
     ./env
     ./fonts
-    ./helmfile
-    ./kind
+    ./kubernetes
     ./network
     ./nix
     ./sound
