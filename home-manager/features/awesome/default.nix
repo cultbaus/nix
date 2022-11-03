@@ -1,6 +1,5 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, ... }:
 
-with lib;
 {
   home = {
     file = {
@@ -10,7 +9,7 @@ with lib;
 
         xset r rate 200 40
 
-        exec awesome 2> ~/.cache/awesome/stderr >1 ~/.cache/awesome/stdout
+        exec awesome
       '';
       ".config/awesome".source = config.lib.file.mkOutOfStoreSymlink ./config;
     };

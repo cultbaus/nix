@@ -1,5 +1,3 @@
-{ config, pkgs, libs, ... }:
-
 {
   imports = [
     ./autojump.nix

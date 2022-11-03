@@ -1,5 +1,3 @@
-{ config, pkgs, lib, ... }:
-with lib;
 {
   services.picom = {
     enable = true;

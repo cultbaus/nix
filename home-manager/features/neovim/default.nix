@@ -1,13 +1,5 @@
-{ config, pkgs, lib, inputs, ... }:
-
+{ pkgs, ... }:
 with pkgs;
-let
-  hl = builtins.readFile ./extras/highlights.lua;
-  kb = builtins.readFile ./extras/keybindings.lua;
-  opt = builtins.readFile ./extras/options.lua;
-  sl = builtins.readFile ./extras/statusline.lua;
-  cmd = builtins.readFile ./extras/commands.lua;
-in
 {
   programs.neovim = {
     enable = true;
@@ -16,34 +8,36 @@ in
     viAlias = true;
     extraConfig = ''
       lua << EOF
-      ${hl}
-      ${kb}
-      ${opt}
-      ${sl}
-      ${cmd}
+        ${builtins.readFile ./extras/highlights.lua}
+        ${builtins.readFile ./extras/keybindings.lua}
+        ${builtins.readFile ./extras/options.lua}
+        ${builtins.readFile ./extras/statusline.lua}
+        ${builtins.readFile ./extras/commands.lua}
       EOF
     '';
     plugins = with vimPlugins; [
       {
-        plugin = nvim-treesitter.withPlugins (plugins: with plugins; [
-          bash
-          css
-          docker
-          go
-          gomod
-          graphql
-          html
-          javascript
-          json
-          lua
-          make
-          norg
-          nix
-          prisma
-          rust
-          typescript
-          tsx
-        ]);
+        plugin = nvim-treesitter.withPlugins
+          (plugins:
+            with plugins; [
+              bash
+              css
+              docker
+              go
+              gomod
+              graphql
+              html
+              javascript
+              json
+              lua
+              make
+              norg
+              nix
+              prisma
+              rust
+              typescript
+              tsx
+            ]);
         type = "lua";
         config = builtins.readFile (./plugins/treesitter.lua);
       }

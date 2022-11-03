@@ -1,11 +1,7 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  extraNodePackages = import ./packages/default.nix { inherit pkgs; };
-in
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     shfmt
-    extraNodePackages."bash-language-server"
+    extraNodePackages.bash-language-server
   ];
 }

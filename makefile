@@ -13,7 +13,7 @@ system: ## rebuild nixos system config
 	@sudo nixos-rebuild switch --flake ."#$(HOST)"
 
 generate: ## generate node-packages.nix
-	@cd home-manager/features/languages/packages && \
+	@cd pkgs/node-packages && \
 		nix-shell -p nodePackages.node2nix --command "node2nix --nodejs-14 -i ./node-packages.json -o node-packages.nix"
 
 update: ## runs `nix flake update`

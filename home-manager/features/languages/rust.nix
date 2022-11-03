@@ -1,6 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [ rustup rust-analyzer ];
   home.sessionVariables = {

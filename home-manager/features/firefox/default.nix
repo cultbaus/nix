@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 let
   # gruvbox-material ddg
   themedUrl = "https://duckduckgo.com/?kae=t&kj=1d2021&kp=-2&k8=d4be98&kbc=1&kx=d8a657&kak=-1&ks=n&kn=-1&kau=-1&kk=-1&k1=-1&kao=-1&kz=-1&k21=1d2021&kap=-1&kf=-1&k9=a9b665&kax=-1&k7=1d2021&kaa=d3869b&kaq=-1";
@@ -17,6 +16,10 @@ in
           force = true;
           default = "DuckDuckGo";
           engines = {
+            "Styled DDG" = {
+              urls = [{ template = "https://duckduckgo.com/?q={searchTerms}&kae=t&kj=1d2021&kp=-2&k8=d4be98&kbc=1&kx=d8a657&kak=-1&ks=n&kn=-1&kau=-1&kk=-1&k1=-1&kao=-1&kz=-1&k21=1d2021&kap=-1&kf=-1&k9=a9b665&kax=-1&k7=1d2021&kaa=d3869b&kaq=-1&t=ha&va=j&ia=web"; }];
+              definedAliases = [ "@ddg" ];
+            };
             "Nix Packages" = {
               urls = [{
                 template = "https://search.nixos.org/packages";

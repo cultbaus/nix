@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   services = {
     mpd = {
@@ -11,6 +11,7 @@
         }
       '';
     };
+
     mopidy = {
       enable = true;
       settings = {

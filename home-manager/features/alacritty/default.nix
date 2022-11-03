@@ -1,12 +1,8 @@
-{ config, ... }:
-let
-  scheme = import ./colors/gruvbox-material.nix { };
-in
 {
   programs.alacritty = {
     enable = true;
     settings = {
-      colors = scheme;
+      colors = import ./colors/gruvbox-material.nix { };
       env.term = "alacritty";
       window = {
         dimensions = {

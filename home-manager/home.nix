@@ -1,5 +1,4 @@
-{ lib, config, pkgs, ... }: {
-
+{ pkgs, ... }: {
   imports = [
     ./features
   ];
@@ -16,7 +15,6 @@
   };
 
   home.packages = with pkgs; [
-    alsa-utils
     brightnessctl
     fd
     feh
