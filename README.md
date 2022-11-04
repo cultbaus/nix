@@ -13,6 +13,8 @@ install nixos as normal, create `nixos`, `boot`, and `swap` partitions for home/
 in `/etc/nixos/configuration.nix`:
 
 ```nix
+{ pkgs, ... }:
+{
   networking = {
     hostName = "none";
     wireless = {
@@ -28,6 +30,7 @@ in `/etc/nixos/configuration.nix`:
   environment.systemPackages = with pkgs; [
     git
   ];
+}
 ```
 
 reboot, login as root because you followed the readme here and didn't make a user:
