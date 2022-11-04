@@ -2,6 +2,48 @@
 
 my nixos build
 
+## installation
+
+installation varies slightly between desktop/laptop implementations
+
+### laptop (nil@none)
+
+install nixos as normal, create `nixos`, `boot`, and `swap` partitions for home/boot/swap
+
+in `/etc/nixos/configuration.nix`:
+
+```nix
+  networking = {
+    hostName = "none";
+    wireless = {
+      enable = true;
+      networks = {
+        "ssid" = {
+          psk = "psk";
+        };
+      };
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    git
+  ];
+```
+
+reboot, login as root because you followed the readme here and didn't make a user:
+
+```bash
+useradd -m -g users -G wheel -s nil
+```
+
+clone the repo, cd, run:
+
+```bash
+sudo nixos-rebuild switch --flake ."#none"
+```
+
+drop into a nix-shell with home-manager, and run the `make home` to install user packages
+
 ## quickstart
 
 everything is controlled via the makefile, `make` will print a list of available targets.
