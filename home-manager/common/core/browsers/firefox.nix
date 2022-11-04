@@ -9,6 +9,7 @@
     profiles = {
       "nil" = {
         settings = {
+          "brownser.download.dir" = "${config.home.homeDirectory}/media/downloads";
           "browser.startup.homepage" = pkgs.themes.gruvbox-material.ddg;
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         };
