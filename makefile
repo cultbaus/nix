@@ -6,6 +6,7 @@ help: ## prints this help message
 		| grep -E '^[a-zA-Z_-]+:.*?## .*$$' \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: home
 home: ## rebuild home-manager config
 	@home-manager switch --flake ."#$(USER)@$(HOST)"
 

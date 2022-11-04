@@ -52,21 +52,21 @@
           pkgs = legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; };
           modules = [
-            ./nixos/configuration.nix
+            ./hosts/none
           ];
         };
       };
 
       homeConfigurations = {
-        inherit system;
-
         "nil@none" = home-manager.lib.homeManagerConfiguration {
+          # inherit system;
+
           pkgs = legacyPackages.x86_64-linux;
           extraSpecialArgs = {
             inherit inputs;
           };
           modules = [
-            ./home-manager/home.nix
+            ./home-manager/nil
           ];
         };
       };
