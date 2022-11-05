@@ -22,5 +22,6 @@
     unzip
     wget
     xclip
+    xdg-utils
   ];
 }

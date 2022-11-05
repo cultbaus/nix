@@ -6,10 +6,7 @@
 }:
 {
   imports = [
-    ./core
-    ./desktop
-    ./dev
-    ./services
-    ./shell
+    ./helm
+    ./kind
   ];
 }
