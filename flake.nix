@@ -46,6 +46,7 @@
       });
 
       nixosConfigurations = {
+        # Laptop
         none = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -55,18 +56,39 @@
             ./hosts/none
           ];
         };
+
+        # Desktop
+        curse = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          pkgs = legacyPackages.x86_64-linux;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/curse
+          ];
+        };
       };
 
       homeConfigurations = {
+        # Home
         "nil@none" = home-manager.lib.homeManagerConfiguration {
-          # inherit system;
-
           pkgs = legacyPackages.x86_64-linux;
           extraSpecialArgs = {
             inherit inputs;
           };
           modules = [
             ./home-manager/nil
+          ];
+        };
+
+        # Work
+        "body@curse" = home-manager.lib.homeManagerConfiguration {
+          pkgs = legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./home-manager/body
           ];
         };
       };
