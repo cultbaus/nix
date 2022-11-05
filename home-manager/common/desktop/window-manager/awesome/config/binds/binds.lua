@@ -7,7 +7,6 @@ function M.setup(opt)
         opt.key.press_mod('d', opt.action.open_app_launcher(opt.awful), { when = true }),
         opt.key.press_mod('s', opt.action.send_notif(opt.awful), { when = GLOBAL_CONFIG.neorg }),
         opt.key.press_mod('l', opt.action.open_browser(opt.awful), { when = true }),
-        opt.key.press_mod('k', opt.action.open_editor(opt.awful), { when = true }),
         opt.key.press_mod('w', opt.action.open_neorg_ws(opt.awful, 'work'), { when = GLOBAL_CONFIG.neorg }),
         opt.key.press_mod('p', opt.action.open_neorg_ws(opt.awful, 'home'), { when = GLOBAL_CONFIG.neorg }),
 
@@ -19,6 +18,8 @@ function M.setup(opt)
         opt.key.press_one_of_mod('numrow', opt.action.view_tags(opt.awful), { when = true }),
         opt.key.press_one_of_shift_mod('numrow', opt.action.move_window(opt.awful), { when = true }),
         opt.key.press_mod('Tab', opt.action.focus_window(opt.awful, 1), { when = true }),
+        opt.key.press_mod('j', opt.action.make_primary(opt.awful), { when = true }),
+        opt.key.press_mod('k', opt.action.make_secondary(opt.awful), { when = true }),
 
         -- misc
         opt.key.press_key('Print', opt.action.take_screenhot(opt.awful), { when = true }),

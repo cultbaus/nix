@@ -79,6 +79,24 @@ function M.move_window()
     end
 end
 
+-- move window to primary section
+function M.make_primary()
+    return function()
+        if client.focus then
+            client.focus:to_primary_section()
+        end
+    end
+end
+
+-- move window to primary section
+function M.make_secondary()
+    return function()
+        if client.focus then
+            client.focus:to_secondary_section()
+        end
+    end
+end
+
 -- focus window by index
 function M.focus_window(awful, index)
     return function()
