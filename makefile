@@ -28,4 +28,5 @@ optimise: clean ## clean & optimise the nix store
 clean: ## cleans & deletes old generations, collects garbage
 	@nix-env --delete-generations old && \
 		nix-store --gc && \
-		nix-collect-garbage -d
+		nix-collect-garbage -d && \
+		sudo nix-collect-garbage -d
