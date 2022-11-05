@@ -6,5 +6,6 @@
 }: {
   imports = [
     ./ncmpcpp.nix
+    ./zathura.nix
   ];
 }
